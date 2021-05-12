@@ -78,19 +78,30 @@ runtime given a JSON input file of tasks. Only one 16 core
 computer is given to run these tasks.
 
 ### Thought process
-First, find all the tasks with dependencies and trace upwards
-until the parent task is reached. Push the parent task into
-a priority queue ordered by shortest time first if the parent
-task is not already present in the queue.
+First, create a Graph of all the tasks with dependencies.
+Run a Depth-First Search algorithm on the Graph to determine
+what level a certain task is.
 
-Afterwards, insert all tasks with no dependencies into the
-priority queue.
+Then, push all the parent (first-level) tasks onto a priority 
+queue ordered by shortest time first.
 
-Run as many tasks simultaneously from the priority queue as
-CPU limitations allow.
+Iterate through the priority queue. For each task t, create a
+sublist of tasks with a CPU cost of the complement of t's
+CPU cost. For instance, if t had a CPU cost of 5, create a
+sublist of tasks with a CPU cost of (16 - 5) or lower.
 
-This program is not perfect as the CPU is not fully utilized
-at all times.
+Execute as many tasks in t's sublist as CPU limitations
+(16 cores) allow. Record the maximum time taken to execute
+one of these tasks, including t.
+
+Remove t and all tasks from it's sublist from the priority
+queue. 
+
+Now, all parent tasks have been executed. Push the next level 
+tasks onto the priority queue and repeat the procedure above.
+
+This program is not perfect because of the possibility that the
+CPU is not fully utilized at all times.
 
 ### Run
     $ python3 find_shortest_runtime.py -f <input-file>
