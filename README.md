@@ -12,6 +12,7 @@ Binary architecure of computers allows for the units based on
 powers of 2 (e.g. GiB) most practical. However, the metric
 prefixes such as kilo, mega, and giga arose due to convenience,
 because 1024 is approximate to 1000. 
+
 Source: https://en.wikipedia.org/wiki/Byte#History_of_the_conflicting_definitions
 
 ## Part Three
@@ -33,10 +34,21 @@ of memory to an integer of bytes with the following units:
     pebibyte (PiB),
     exbibyte (EiB),
     zebibyte (ZiB),
-    and yobibyte (YiB),
+    and yobibyte (YiB).
 This program is not case sensitive (e.g. 50MiB == 50mib == 50MIB).
 
 ### Run
     $ python3 convert_size.py <byte-unit>
 
 ## Part Four
+The purpose of this program is to take .json input files and translate
+any units of memory to an integer of bytes. The translated result
+will be .json output file with the naming convention
+"part_four_output_XX.json" with XX being the number corresponding
+to the order the input files were read and translated.
+
+### Run
+    $ python3 convert_tasks.py -f <input-file>, <input-file>, ...
+
+### Command-line options
+    -f, --file: Specify the input file(s).
