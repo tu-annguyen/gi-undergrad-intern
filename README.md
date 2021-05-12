@@ -56,6 +56,7 @@ to the order the input files were read and translated.
 ### Input file format
 This program is built to accept json input files of similar format
 to this:
+```
     {
     "TASK01": {
     "cpu": "4",
@@ -64,3 +65,4 @@ to this:
     "time": 135,
     "relies_on": "TASK03"}
     }
+```
