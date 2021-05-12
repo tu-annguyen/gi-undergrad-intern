@@ -57,12 +57,12 @@ to the order the input files were read and translated.
 This program is built to accept json input files of similar format
 to this:
 ```
-    {
-    "TASK01": {
-    "cpu": "4",
-    "mem": "5GB",
-    "disk": "4Gib",
-    "time": 135,
-    "relies_on": "TASK03"}
-    }
+{
+"TASK01": {
+"cpu": "4",
+"mem": "5GB",
+"disk": "4Gib",
+"time": 135,
+"relies_on": "TASK03"}
+}
 ```
