@@ -6,9 +6,14 @@ import re
 # - (I|i): Indicates if the unit is a multiple-byte unit.
 regex = re.compile(r"^([0-9]*)(K|k|M|m|G|g|T|t|P|p|E|e|Z|z|Y|y|)(i|I)?")
 
+# Return the byte representation of a byte unit input.
+# val: Integer representation of input value. Stored in a string.
+# unit: Unit of bytes e.g. K, M, G. Stored in a string.
+# bi: Indicates whether or not the input value is a bibyte or not with the presence of 'i'.
 def convert(val, unit, bi):
-    ans = int(val)
+    ans = int(val) # Return value.
 
+    # Switch structure for powers of 1000 or 1024.
     if unit != '':
         switcher = {
             "K": 1,
@@ -29,6 +34,7 @@ def convert(val, unit, bi):
             "y": 8,
         }
 
+        # Apply the metric unit to ans.
         power = switcher.get(unit, -1)
         if power != -1:
             if bi is None:

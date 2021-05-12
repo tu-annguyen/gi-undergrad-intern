@@ -36,18 +36,15 @@ def main(argv):
         # Iterate through the dictionary.
         for key in dict:
             for k in dict[key]:
-                # val: Integer representation of input value. Stored in a string.
-                # unit: Unit of bytes e.g. K, M, G. Stored in a string.
-                # bi: Indicates whether or not the input value is a bibyte or not with the presence of 'i'.
-                # byte: Stores the letter 'B.' Confirms the input value is a unit of bytes.
-                val, unit, bi, byte = None, None, None, None 
-                
+                val, unit, bi, = None, None, None
+
+                # Scan dictionary of values for byte units. 
                 try:
                     val, unit, bi = regex.search(dict[key][k]).groups() 
                 except (AttributeError, TypeError):
                     pass
 
-                # Convert the unit into bytes and overwrite the conversion into dict.
+                # Convert the byte unit into its byte representation and overwrite the conversion into dict.
                 if val is not None and val != '':
                     val_converted = convert(val, unit, bi)
                     dict[key][k] = str(val_converted)
