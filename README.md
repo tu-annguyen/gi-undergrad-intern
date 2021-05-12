@@ -94,8 +94,7 @@ Execute as many tasks in t's sublist as CPU limitations
 (16 cores) allow. Record the maximum time taken to execute
 one of these tasks, including t.
 
-Remove t and all tasks from it's sublist from the priority
-queue. 
+Remove t and all executed tasks from the priority queue. 
 
 Now, all parent tasks have been executed. Push the next level 
 tasks onto the priority queue and repeat the procedure above.
