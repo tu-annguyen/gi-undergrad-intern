@@ -66,3 +66,5 @@ to this:
 "relies_on": "TASK03"}
 }
 ```
+Each input file should have one or more tasks. This program will
+scan the values inside each task.
