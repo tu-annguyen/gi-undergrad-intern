@@ -83,7 +83,7 @@ Run a Depth-First Search algorithm on the Graph to determine
 what level a certain task is.
 
 Then, push all the parent (first-level) tasks onto a priority 
-queue ordered by shortest time first.
+queue ordered by longest time first.
 
 Iterate through the priority queue. For each task t, create a
 sublist of tasks with a CPU cost of the complement of t's
