@@ -76,14 +76,13 @@ runtime given a JSON input file of tasks. Only one 16 core
 computer is given to run these tasks.
 
 ### Thought process
-Use weighted graphs to represent all the tasks to complete and 
-running the Bellman-Ford algorithm to find the shortest path. 
-However, the algorithm will only find the shortest path for 
-tasks with dependencies.
+First, find all the tasks with dependencies and trace upwards
+until the parent task is reached. Push the parent task into
+a priority queue ordered by shortest time first if the parent
+task is not already present in the queue.
 
-Afterwards, insert all tasks with no dependencies and the parent
-tasks of every depencency tree into a priority queue by
-shortest time first.
+Afterwards, insert all tasks with no dependencies into the
+priority queue.
 
 Run as many tasks simultaneously from the priority queue as
 CPU limitations allow.
