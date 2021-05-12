@@ -1,4 +1,4 @@
-import sys, getopt, json, itertools
+import sys, getopt, json
 from convert import *
 
 def main(argv):
