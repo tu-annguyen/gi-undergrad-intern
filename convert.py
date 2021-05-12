@@ -4,8 +4,7 @@ import re
 # - ([0-9]*): Number of a certain byte unit.
 # - (K|k|M|m|G|g|T|t|P|p|E|e|Z|z|Y|y|): Metric prefix of the byte unit.
 # - (I|i): Indicates if the unit is a multiple-byte unit.
-# - (B|b): Confirms the value is a byte unit.
-regex = re.compile(r"^([0-9]*)(K|k|M|m|G|g|T|t|P|p|E|e|Z|z|Y|y|)(i|I)?(B|b)$")
+regex = re.compile(r"^([0-9]*)(K|k|M|m|G|g|T|t|P|p|E|e|Z|z|Y|y|)(i|I)?")
 
 def convert(val, unit, bi):
     ans = int(val)
@@ -36,5 +35,5 @@ def convert(val, unit, bi):
                 ans *= pow(1000, power) 
             else:
                 ans *= pow(1024, power)
-
+        
     return ans

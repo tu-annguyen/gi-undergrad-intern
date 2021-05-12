@@ -40,15 +40,15 @@ def main(argv):
                 # unit: Unit of bytes e.g. K, M, G. Stored in a string.
                 # bi: Indicates whether or not the input value is a bibyte or not with the presence of 'i'.
                 # byte: Stores the letter 'B.' Confirms the input value is a unit of bytes.
-                val, unit, bi, byte = 0, None, None, None 
+                val, unit, bi, byte = None, None, None, None 
                 
                 try:
-                    val, unit, bi, byte = regex.search(dict[key][k]).groups() 
+                    val, unit, bi = regex.search(dict[key][k]).groups() 
                 except (AttributeError, TypeError):
                     pass
 
                 # Convert the unit into bytes and overwrite the conversion into dict.
-                if byte is not None:
+                if val is not None and val != '':
                     val_converted = convert(val, unit, bi)
                     dict[key][k] = str(val_converted)
 
