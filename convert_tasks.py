@@ -1,4 +1,4 @@
-import sys, getopt, json
+import sys, getopt, json, itertools
 from convert import *
 
 def main(argv):
@@ -31,22 +31,24 @@ def main(argv):
     print(infiles)
     print(outfiles)
 
-    for file in infiles:
-        infile = open(file, 'r')
-        outfile = open(file, 'w')
-        
-        dict = json.loads(infile.read())
+    for ifile, ofile in zip(infiles, outfiles):
+        infile = open(ifile, 'r')
+        outfile = open(ofile, 'w')
+       
+        dict = json.load(infile)
 
-        for key, value in dict:
-            try:
-                val, unit, bi, byte = regex.search(value).groups() 
-            except AttributeError:
-                print('Invalid byte value. Refer to examples of correct byte values:\n- 400B\n- 40KB\n- 50MiB\nInput is not case sensitive.')
-                sys.exit(2)
+        for key in dict:
+            for k in dict[key]:
+                val, unit, bi, byte = 0, None, None, None 
+                
+                try:
+                    val, unit, bi, byte = regex.search(dict[key][k]).groups() 
+                except (AttributeError, TypeError):
+                    pass
 
-            if byte is not None:
-                val_converted = convert(val, unit, bi)
-                dict[value] = val_converted
+                if byte is not None:
+                    val_converted = convert(val, unit, bi)
+                    dict[key][k] = val_converted
 
         outfile.write(json.dumps(dict, indent = 4))
         
