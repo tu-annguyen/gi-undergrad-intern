@@ -70,7 +70,9 @@ scan the values inside each task. Each "task" will have 5 features:
 ```
 The program will translate every "memory_size" value to bytes.
 
-## Part Five
+## Part Five (unfinished)
+Note: This program is unfinished.
+
 The purpose of this program is to find the shortest possible
 runtime given a JSON input file of tasks. Only one 16 core
 computer is given to run these tasks.
