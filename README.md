@@ -41,10 +41,10 @@ This program is not case sensitive (e.g. 50MiB == 50mib == 50MIB).
     $ python3 convert_size.py <byte-unit>
 
 ## Part Four
-The purpose of this program is to take .json input files and translate
+The purpose of this program is to take JSON input files and translate
 any units of memory to an integer of bytes. The translated result
-will be .json output file with the naming convention
-"part_four_output_XX.json" with XX being the number corresponding
+will be JSON output file with the naming convention
+"part_four_output_##.json" with ## being the number corresponding
 to the order the input files were read and translated.
 
 ### Run
@@ -54,17 +54,51 @@ to the order the input files were read and translated.
     -f, --file: Specify the input file(s).
 
 ### Input file format
-This program is built to accept json input files of similar format
-to this:
+Each input file should have one or more tasks. This program will
+scan the values inside each task. Each "task" will have 5 features:
 ```
 {
-"TASK01": {
-"cpu": "4",
-"mem": "5GB",
-"disk": "4Gib",
-"time": 135,
-"relies_on": "TASK03"}
+    "TASK01": {
+    "cpu": "#_of_CPUs_needed_by_task",
+    "mem": "memory_size",
+    "disk": "memory_size",
+    "time": "ammount_of_time_to_complete_task",
+    "relies_on": "TASK##"
+    },
+    ...
 }
 ```
-Each input file should have one or more tasks. This program will
-scan the values inside each task.
+The program will translate every "memory_size" value to bytes.
+
+## Part Five
+The purpose of this program is to find the shortest possible
+runtime given JSON input files of tasks. Only one 16 core
+computer is given to run these tasks.
+
+### Thought process
+My initial thought is to use weighted graphs to represent all
+the tasks to complete.
+
+### Run
+    $ python3 find_shortest_runtime.py -f <input-file>, <input-file>, ...
+
+### Commands-line options
+    -f, --file: Specify the input file(s).
+
+### Input file format
+Each input file should have one or more tasks. Each "task" will
+have at least 2 features with an optional "relies_on" feature:
+```
+{
+    "TASK00": {
+        "cpu": 13,
+        "time": 851
+    },
+    "TASK01": {
+        "cpu": 9,
+        "time": 506,
+        "relies_on": 13
+    },
+    ...
+}
+```
