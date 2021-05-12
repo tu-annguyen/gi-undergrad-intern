@@ -51,7 +51,7 @@ to the order the input files were read and translated.
     $ python3 convert_tasks.py -f <input-file>, <input-file>, ...
 
 ### Command-line options
-    -f, --file: Specify the input file(s).
+    -f, --files: Specify the input file(s).
 
 ### Input file format
 Each input file should have one or more tasks. This program will
@@ -72,18 +72,30 @@ The program will translate every "memory_size" value to bytes.
 
 ## Part Five
 The purpose of this program is to find the shortest possible
-runtime given JSON input files of tasks. Only one 16 core
+runtime given a JSON input file of tasks. Only one 16 core
 computer is given to run these tasks.
 
 ### Thought process
-My initial thought is to use weighted graphs to represent all
-the tasks to complete.
+Use weighted graphs to represent all the tasks to complete and 
+running the Bellman-Ford algorithm to find the shortest path. 
+However, the algorithm will only find the shortest path for 
+tasks with dependencies.
+
+Afterwards, insert all tasks with no dependencies and the parent
+tasks of every depencency tree into a priority queue by
+shortest time first.
+
+Run as many tasks simultaneously from the priority queue as
+CPU limitations allow.
+
+This program is not perfect as the CPU is not fully utilized
+at all times.
 
 ### Run
-    $ python3 find_shortest_runtime.py -f <input-file>, <input-file>, ...
+    $ python3 find_shortest_runtime.py -f <input-file>
 
 ### Commands-line options
-    -f, --file: Specify the input file(s).
+    -f, --file: Specify the input file.
 
 ### Input file format
 Each input file should have one or more tasks. Each "task" will
