@@ -50,7 +50,7 @@ def main(argv):
                 # Convert the unit into bytes and overwrite the conversion into dict.
                 if byte is not None:
                     val_converted = convert(val, unit, bi)
-                    dict[key][k] = val_converted
+                    dict[key][k] = str(val_converted)
 
         outfile.write(json.dumps(dict, indent = 4)) # Write translated json dict into outfile.
         
