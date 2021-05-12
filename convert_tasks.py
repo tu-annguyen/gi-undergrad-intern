@@ -19,7 +19,7 @@ def main(argv):
 
         outfile = 'part_four_output_'
         if outfile_num < 10:
-            outfile = 'part_four_output_0' # 0 prefixing.
+            outfile = 'part_four_output_0' # '0' prefixing.
 
         outfile += str(outfile_num) + '.json'
         outfiles.append(outfile)
